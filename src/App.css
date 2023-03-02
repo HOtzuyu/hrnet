@@ -1,0 +1,137 @@
+/* import font */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+/* principals colors */
+:root{
+    --primary-color : #233867;
+    --second-color : #FEA800;
+    --font : 'Open Sans', sans-serif;
+}
+
+#root {
+    position: relative;
+    min-height: 100vh;
+}
+
+*{
+    font-family: var(--font);
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+/* Header */
+.main-nav{
+    background-color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 20px;
+}
+
+.logo-nav-img{
+    width: 120px;
+    filter: invert(1);
+}
+
+.links{
+    display: flex;
+    align-self: flex-end;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.nav-link{
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+/* Footer */
+.footer {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.logo-footer{
+    width: 100px;
+}
+
+/* Form */
+.form-home{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.form-home_tittle {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    width: 100%;
+    margin: 50px auto;
+    box-shadow: var(--primary-color) 5px 5px 15px 0px;
+    padding: 15px 20px;
+    border-radius: 10px;
+}
+legend{
+    font-weight: 700;
+    color: var(--primary-color);
+    padding: 0 10px;
+}
+
+.field {
+    display: flex;
+    justify-content: space-between;
+}
+
+label {
+    margin-top: 15px;
+    color: var(--primary-color);
+}
+input, select {
+    margin-top: 5px;
+    border: var(--second-color) solid 1px;
+    border-radius: 10px;
+    padding: 5px 15px;
+}
+
+.personal, .address {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+    padding: 10px 10px;
+    border: var(--primary-color) solid 1px;
+    border-radius: 10px;
+}
+
+.btn-save{
+    margin-top: 20px;
+    align-self: center;
+    background-color: var(--second-color);
+    border: none;
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-save:hover{
+    letter-spacing: 2px;
+}
+
+/* Tab */
