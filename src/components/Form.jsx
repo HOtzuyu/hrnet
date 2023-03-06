@@ -1,5 +1,17 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import {
+  addFirstName,
+  addLastName,
+  addDateOfBirth,
+  addStartDate,
+  addStreet,
+  addCity,
+  addState,
+  addZipCode,
+  addDepartement,
+} from "../utils/redux/reducer";
 
 const Input = ({ label, register, tittle }) => (
   <>
@@ -9,14 +21,35 @@ const Input = ({ label, register, tittle }) => (
 );
 
 function Form() {
+  //logique enregistrement des infos
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const dispatch = useDispatch();
+  const onSubmit = (data) => {
+    console.log(data.firstName);
+    console.log(data.lastName);
+    console.log(data.birthDate);
+    console.log(data.startDate);
+    console.log(data.street);
+    console.log(data.city);
+    console.log(data.state);
+    console.log(data.zipCode);
+    console.log(data.departement);
+    dispatch(addFirstName(data.firstName));
+    dispatch(addLastName(data.lastName));
+    dispatch(addDateOfBirth(data.birthDate));
+    dispatch(addStartDate(data.startDate));
+    dispatch(addStreet(data.street));
+    dispatch(addCity(data.city));
+    dispatch(addState(data.state));
+    dispatch(addZipCode(data.zipCode));
+    dispatch(addDepartement(data.departement));
+  };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit((data) => onSubmit(data))}>
       <div className="field">
         <fieldset className="personal">
           <legend>Personnal Informations</legend>
-
           <Input
             label={"First Name"}
             register={register}
