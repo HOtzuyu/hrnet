@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const employeeSlice = createSlice({
     name: 'employee',
     initialState: {
+        data : [],
         firstName : "",
         lastName : "",
         dateOfBirth : "",
@@ -15,6 +16,11 @@ const employeeSlice = createSlice({
     },
     reducers: {
     
+        addData: (state, action) => {
+            console.log("Data : " + action)
+            state.data = action
+        },
+
         addFirstName: (state, action) => {
             console.log("T :"+ state.firstName)
             state.firstName = action.payload
@@ -62,5 +68,5 @@ const employeeSlice = createSlice({
     },
 });
 
-export const { addFirstName , addLastName, addDateOfBirth, addStartDate, addStreet, addCity, addState, addZipCode, addDepartement} = employeeSlice.actions;
+export const { addData, addFirstName , addLastName, addDateOfBirth, addStartDate, addStreet, addCity, addState, addZipCode, addDepartement} = employeeSlice.actions;
 export const employeeReducer = employeeSlice.reducer;

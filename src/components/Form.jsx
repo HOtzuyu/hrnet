@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import {
+  addData,
   addFirstName,
   addLastName,
   addDateOfBirth,
@@ -25,6 +26,7 @@ function Form() {
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const onSubmit = (data) => {
+    console.log(data);
     console.log(data.firstName);
     console.log(data.lastName);
     console.log(data.birthDate);
@@ -34,6 +36,7 @@ function Form() {
     console.log(data.state);
     console.log(data.zipCode);
     console.log(data.departement);
+    dispatch(addData(data));
     dispatch(addFirstName(data.firstName));
     dispatch(addLastName(data.lastName));
     dispatch(addDateOfBirth(data.birthDate));
