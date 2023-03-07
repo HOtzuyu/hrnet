@@ -1,188 +1,182 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import {
-  addData,
-  addFirstName,
-  addLastName,
-  addDateOfBirth,
-  addStartDate,
-  addStreet,
-  addCity,
-  addState,
-  addZipCode,
-  addDepartement,
-} from "../utils/redux/reducer";
+  submitForm,
+  unvalidForm,
+  validForm,
+  checkValidForm,
+} from "../utils/redux/action";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
+import { states } from "../data/states";
 
-const Input = ({ label, register, tittle }) => (
-  <>
-    <label>{label}</label>
-    <input {...register(tittle)} />
-  </>
-);
+//***************Gestion des listes dropdown************
+const departments = [
+  "Sales",
+  "Marketing",
+  "Engineering",
+  "Human Resources",
+  "Legal",
+];
 
-function Form() {
-  //logique enregistrement des infos
-  const { register, handleSubmit } = useForm();
+let tabStatesFilter = [];
+
+const statesFilter = (states) => {
+  states.map((state) => tabStatesFilter.push(state.name));
+  return tabStatesFilter;
+};
+const statesName = statesFilter(states);
+
+//******************************************************
+
+//***************Gestion des datePicker*****************
+
+function formatDate(date) {
+  const dateNew = new Date(date);
+  const dateISO = dateNew.toISOString().split("T")[0];
+  const [year, month, day] = dateISO.split(".");
+
+  return [month, day, year].join("");
+}
+
+//********************************************************
+
+let item = [];
+
+function CreateEmployee() {
+  const [first, setFirst] = useState("");
+  const [last, setLast] = useState("");
+  const [birth, setBirth] = useState(new Date());
+  const [start, setStart] = useState(new Date());
+  const [street, setStreet] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [code, setCode] = useState("");
+  const [department, setDepartment] = useState("");
+
   const dispatch = useDispatch();
-  const onSubmit = (data) => {
-    console.log(data);
-    console.log(data.firstName);
-    console.log(data.lastName);
-    console.log(data.birthDate);
-    console.log(data.startDate);
-    console.log(data.street);
-    console.log(data.city);
-    console.log(data.state);
-    console.log(data.zipCode);
-    console.log(data.departement);
-    dispatch(addData(data));
-    dispatch(addFirstName(data.firstName));
-    dispatch(addLastName(data.lastName));
-    dispatch(addDateOfBirth(data.birthDate));
-    dispatch(addStartDate(data.startDate));
-    dispatch(addStreet(data.street));
-    dispatch(addCity(data.city));
-    dispatch(addState(data.state));
-    dispatch(addZipCode(data.zipCode));
-    dispatch(addDepartement(data.departement));
+
+  item = {
+    first: first.toLocaleLowerCase(),
+    last: last.toLocaleLowerCase(),
+    birth: formatDate(birth),
+    start: formatDate(start),
+    street: street.toLocaleLowerCase(),
+    city: city.toLocaleLowerCase(),
+    state: state.label,
+    code: code,
+    department: department.label,
+  };
+
+  const checkForm = () => {
+    if (first === "" || last === "") {
+      dispatch(unvalidForm());
+    } else {
+      dispatch(validForm());
+    }
+  };
+
+  const saveEmployee = async (e) => {
+    e.preventDefault();
+    checkForm();
+    const submit = dispatch(checkValidForm());
+
+    if (submit) {
+      dispatch(submitForm(item));
+    } else {
+      return false;
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit((data) => onSubmit(data))}>
-      <div className="field">
-        <fieldset className="personal">
-          <legend>Personnal Informations</legend>
-          <Input
-            label={"First Name"}
-            register={register}
-            tittle={"firstName"}
-          />
-          <Input
-            label={"Last Name"}
-            register={register}
-            tittle={"lastName"}
+    <>
+      <form id="formulaire">
+        <section className="employee">
+          <label htmlFor="first-name">First Name</label>
+          <input
+            type="text"
+            id="first"
+            name="first"
+            onChange={(e) => setFirst(e.target.value)}
           />
 
-          <label>Date of Birth</label>
+          <label htmlFor="last-name">Last Name</label>
           <input
-            {...register("birthDate")}
-            type="date"
-            min="1923-01-01"
-            max="2008-12-31"
-            id="birthDate"
-          ></input>
+            type="text"
+            id="last"
+            name="last"
+            onChange={(e) => setLast(e.target.value)}
+          />
 
-          <label>Start Date</label>
+          <label htmlFor="date-of-birth">Date of Birth</label>
+          <DatePicker
+            name="birth"
+            selected={birth}
+            onChange={setBirth}
+            value={birth}
+          />
+
+          <label htmlFor="start-date">Start Date</label>
+          <DatePicker
+            name="start"
+            selected={start}
+            onChange={setStart}
+            value={start}
+          />
+        </section>
+
+        <section className="adresse">
+          <label htmlFor="street">Street</label>
           <input
-            {...register("startDate")}
-            type="date"
-            min="2000-01-01"
-            id="start-date"
-          ></input>
-        </fieldset>
-
-        <fieldset className="address">
-          <legend>Address</legend>
-
-          <label>Street</label>
-          <input
-            {...register("street")}
             id="street"
+            type="text"
+            name="street"
+            onChange={(e) => setStreet(e.target.value)}
           />
 
-          <label>City</label>
+          <label htmlFor="city">City</label>
           <input
-            {...register("city")}
             id="city"
+            type="text"
+            name="city"
+            onChange={(e) => setCity(e.target.value)}
           />
 
-          <label>State</label>
-          <select
-            {...register("state")}
-            id="state"
-          >
-            <option value="AL">Alabama</option>
-            <option value="AK">Alaska</option>
-            <option value="AZ">Arizona</option>
-            <option value="AR">Arkansas</option>
-            <option value="CA">California</option>
-            <option value="CO">Colorado</option>
-            <option value="CT">Connecticut</option>
-            <option value="DE">Delaware</option>
-            <option value="DC">District Of Columbia</option>
-            <option value="FL">Florida</option>
-            <option value="GA">Georgia</option>
-            <option value="HI">Hawaii</option>
-            <option value="ID">Idaho</option>
-            <option value="IL">Illinois</option>
-            <option value="IN">Indiana</option>
-            <option value="IA">Iowa</option>
-            <option value="KS">Kansas</option>
-            <option value="KY">Kentucky</option>
-            <option value="LA">Louisiana</option>
-            <option value="ME">Maine</option>
-            <option value="MD">Maryland</option>
-            <option value="MA">Massachusetts</option>
-            <option value="MI">Michigan</option>
-            <option value="MN">Minnesota</option>
-            <option value="MS">Mississippi</option>
-            <option value="MO">Missouri</option>
-            <option value="MT">Montana</option>
-            <option value="NE">Nebraska</option>
-            <option value="NV">Nevada</option>
-            <option value="NH">New Hampshire</option>
-            <option value="NJ">New Jersey</option>
-            <option value="NM">New Mexico</option>
-            <option value="NY">New York</option>
-            <option value="NC">North Carolina</option>
-            <option value="ND">North Dakota</option>
-            <option value="OH">Ohio</option>
-            <option value="OK">Oklahoma</option>
-            <option value="OR">Oregon</option>
-            <option value="PA">Pennsylvania</option>
-            <option value="RI">Rhode Island</option>
-            <option value="SC">South Carolina</option>
-            <option value="SD">South Dakota</option>
-            <option value="TN">Tennessee</option>
-            <option value="TX">Texas</option>
-            <option value="UT">Utah</option>
-            <option value="VT">Vermont</option>
-            <option value="VA">Virginia</option>
-            <option value="WA">Washington</option>
-            <option value="WV">West Virginia</option>
-            <option value="WI">Wisconsin</option>
-            <option value="WY">Wyoming</option>
-          </select>
+          <label htmlFor="state">State</label>
+          <Dropdown
+            placeholder="Select an option"
+            name="stateList"
+            options={statesName}
+            onChange={setState}
+          />
 
-          <label>Zip Code</label>
+          <label htmlFor="zip-code">Zip Code</label>
           <input
-            {...register("zipCode")}
             id="zip-code"
+            type="text"
+            name="code"
+            onChange={(e) => setCode(e.target.value)}
           />
-        </fieldset>
+        </section>
+
+        <section className="department">
+          <Dropdown
+            placeholder="Departments"
+            name="departments"
+            options={departments}
+            onChange={setDepartment}
+          />
+        </section>
+      </form>
+
+      <div className="button-save">
+        <button onClick={saveEmployee}> Save </button>
       </div>
-
-      <label>Department</label>
-      <select
-        {...register("departement")}
-        id="department"
-      >
-        <option>Sales</option>
-        <option>Marketing</option>
-        <option>Engineering</option>
-        <option>Human Resources</option>
-        <option>Legal</option>
-      </select>
-
-      <button
-        type="submit"
-        className="btn-save"
-      >
-        Save
-      </button>
-    </form>
+    </>
   );
 }
 
-export default Form;
+export default CreateEmployee;

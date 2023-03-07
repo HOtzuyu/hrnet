@@ -1,8 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit";
-import {employeeReducer} from "./reducer";
+import { configureStore } from "@reduxjs/toolkit"
+import employeesReducer from "./reducer"
 
 export default configureStore({
-  reducer: {
-    employee: employeeReducer,
-  },
-});
+    reducer: {
+        employees : employeesReducer,
+    }
+})
