@@ -11,7 +11,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
-import { states } from "../data/states";
 
 //***************Gestion des listes dropdown************
 const departments = [
@@ -21,14 +20,6 @@ const departments = [
   "Human Resources",
   "Legal",
 ];
-
-let tabStatesFilter = [];
-
-const statesFilter = (states) => {
-  states.map((state) => tabStatesFilter.push(state.name));
-  return tabStatesFilter;
-};
-const statesName = statesFilter(states);
 
 //******************************************************
 
@@ -66,7 +57,7 @@ function CreateEmployee() {
     start: formatDate(start),
     street: street.toLocaleLowerCase(),
     city: city.toLocaleLowerCase(),
-    state: state.label,
+    state: state.toLocaleUpperCase(),
     code: code,
     department: department.label,
   };
@@ -94,72 +85,125 @@ function CreateEmployee() {
   return (
     <>
       <form id="formulaire">
-        <section className="employee">
-          <label htmlFor="first-name">First Name</label>
-          <input
-            type="text"
-            id="first"
-            name="first"
-            onChange={(e) => setFirst(e.target.value)}
-          />
+        <section className="informations">
+          <section className="employee">
+            <label htmlFor="first-name">First Name</label>
+            <input
+              type="text"
+              id="first"
+              name="first"
+              onChange={(e) => setFirst(e.target.value)}
+            />
 
-          <label htmlFor="last-name">Last Name</label>
-          <input
-            type="text"
-            id="last"
-            name="last"
-            onChange={(e) => setLast(e.target.value)}
-          />
+            <label htmlFor="last-name">Last Name</label>
+            <input
+              type="text"
+              id="last"
+              name="last"
+              onChange={(e) => setLast(e.target.value)}
+            />
 
-          <label htmlFor="date-of-birth">Date of Birth</label>
-          <DatePicker
-            name="birth"
-            selected={birth}
-            onChange={setBirth}
-            value={birth}
-          />
+            <label htmlFor="date-of-birth">Date of Birth</label>
+            <DatePicker
+              name="birth"
+              selected={birth}
+              onChange={setBirth}
+              value={birth}
+            />
 
-          <label htmlFor="start-date">Start Date</label>
-          <DatePicker
-            name="start"
-            selected={start}
-            onChange={setStart}
-            value={start}
-          />
-        </section>
+            <label htmlFor="start-date">Start Date</label>
+            <DatePicker
+              name="start"
+              selected={start}
+              onChange={setStart}
+              value={start}
+            />
+          </section>
 
-        <section className="adresse">
-          <label htmlFor="street">Street</label>
-          <input
-            id="street"
-            type="text"
-            name="street"
-            onChange={(e) => setStreet(e.target.value)}
-          />
+          <section className="adresse">
+            <label htmlFor="street">Street</label>
+            <input
+              id="street"
+              type="text"
+              name="street"
+              onChange={(e) => setStreet(e.target.value)}
+            />
 
-          <label htmlFor="city">City</label>
-          <input
-            id="city"
-            type="text"
-            name="city"
-            onChange={(e) => setCity(e.target.value)}
-          />
+            <label htmlFor="city">City</label>
+            <input
+              id="city"
+              type="text"
+              name="city"
+              onChange={(e) => setCity(e.target.value)}
+            />
 
-          <label htmlFor="state">State</label>
-          <Dropdown
-            placeholder="Select an option"
-            name="stateList"
-            options={statesName}
-            onChange={setState}
-          />
+            <label>State</label>
+            <select
+              name="state"
+              onChange={(e) => setState(e.target.value)}
+              id="state"
+            >
+              <option value="AL">Alabama</option>
+              <option value="AK">Alaska</option>
+              <option value="AZ">Arizona</option>
+              <option value="AR">Arkansas</option>
+              <option value="CA">California</option>
+              <option value="CO">Colorado</option>
+              <option value="CT">Connecticut</option>
+              <option value="DE">Delaware</option>
+              <option value="DC">District Of Columbia</option>
+              <option value="FL">Florida</option>
+              <option value="GA">Georgia</option>
+              <option value="HI">Hawaii</option>
+              <option value="ID">Idaho</option>
+              <option value="IL">Illinois</option>
+              <option value="IN">Indiana</option>
+              <option value="IA">Iowa</option>
+              <option value="KS">Kansas</option>
+              <option value="KY">Kentucky</option>
+              <option value="LA">Louisiana</option>
+              <option value="ME">Maine</option>
+              <option value="MD">Maryland</option>
+              <option value="MA">Massachusetts</option>
+              <option value="MI">Michigan</option>
+              <option value="MN">Minnesota</option>
+              <option value="MS">Mississippi</option>
+              <option value="MO">Missouri</option>
+              <option value="MT">Montana</option>
+              <option value="NE">Nebraska</option>
+              <option value="NV">Nevada</option>
+              <option value="NH">New Hampshire</option>
+              <option value="NJ">New Jersey</option>
+              <option value="NM">New Mexico</option>
+              <option value="NY">New York</option>
+              <option value="NC">North Carolina</option>
+              <option value="ND">North Dakota</option>
+              <option value="OH">Ohio</option>
+              <option value="OK">Oklahoma</option>
+              <option value="OR">Oregon</option>
+              <option value="PA">Pennsylvania</option>
+              <option value="RI">Rhode Island</option>
+              <option value="SC">South Carolina</option>
+              <option value="SD">South Dakota</option>
+              <option value="TN">Tennessee</option>
+              <option value="TX">Texas</option>
+              <option value="UT">Utah</option>
+              <option value="VT">Vermont</option>
+              <option value="VA">Virginia</option>
+              <option value="WA">Washington</option>
+              <option value="WV">West Virginia</option>
+              <option value="WI">Wisconsin</option>
+              <option value="WY">Wyoming</option>
+            </select>
 
-          <label htmlFor="zip-code">Zip Code</label>
-          <input
-            id="zip-code"
-            type="text"
-            name="code"
-            onChange={(e) => setCode(e.target.value)}
-          />
+            <label htmlFor="zip-code">Zip Code</label>
+            <input
+              id="zip-code"
+              type="text"
+              name="code"
+              onChange={(e) => setCode(e.target.value)}
+            />
+          </section>
         </section>
 
         <section className="department">
@@ -172,9 +216,13 @@ function CreateEmployee() {
         </section>
       </form>
 
-      <div className="button-save">
-        <button onClick={saveEmployee}> Save </button>
-      </div>
+      <button
+        className="button-save"
+        onClick={saveEmployee}
+      >
+        {" "}
+        Save{" "}
+      </button>
     </>
   );
 }
