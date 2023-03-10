@@ -10,7 +10,6 @@
 
 #root {
     position: relative;
-    min-height: 100vh;
 }
 
 *{
@@ -50,11 +49,11 @@
 }
 /* Footer */
 .footer {
-    position: absolute;
     bottom: 0;
     display: flex;
     justify-content: center;
     width: 100%;
+    margin-top: 35px;
 }
 
 .logo-footer{
@@ -76,12 +75,12 @@
     color: var(--primary-color);
 }
 
-form{
+.formEmployee{
     display: flex;
     flex-direction: column;
     max-width: 1200px;
     width: 100%;
-    margin: 50px auto;
+    margin: 50px auto 10px auto;
     box-shadow: var(--primary-color) 5px 5px 15px 0px;
     padding: 15px 20px;
     border-radius: 10px;
@@ -122,7 +121,7 @@ input, select {
 }
 
 .button-save{
-    margin-top: 20px;
+    margin-top: 5px;
     align-self: center;
     background-color: var(--second-color);
     border: none;
@@ -141,3 +140,46 @@ input, select {
 
 /* Tab */
 
+.DataTable__container {
+    width: 80%;
+    margin: 50px auto;
+}
+
+.DataTable__caption {
+    font-size: 4rem;
+    color: var(--primary-color);
+}
+
+.DataTable__entries-query-container {
+    margin-bottom: 15px;
+}
+
+.ShowEntries__label {
+    display: flex;
+    align-items: center;
+}
+
+.ShowEntries__select {
+    width: 50px;
+    margin: auto 1rem;
+}
+
+.QuerySearch__label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.QuerySearch__input {
+    margin-left: 0.5rem;
+}
+
+.DataTable__head-row{
+    display: flex;
+}
+
+.DataTable__head-cell {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}

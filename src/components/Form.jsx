@@ -84,7 +84,7 @@ function CreateEmployee() {
 
   return (
     <>
-      <form id="formulaire">
+      <form className="formEmployee">
         <section className="informations">
           <section className="employee">
             <label htmlFor="first-name">First Name</label>
