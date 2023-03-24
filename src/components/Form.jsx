@@ -11,17 +11,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
-
-//***************Gestion des listes dropdown************
-const departments = [
-  "Sales",
-  "Marketing",
-  "Engineering",
-  "Human Resources",
-  "Legal",
-];
-
-//******************************************************
+import { departments } from "../data/departements";
+import { Modale } from "modal_lib-ho/dist/Modal";
 
 //***************Gestion des datePicker*****************
 
@@ -47,6 +38,7 @@ function CreateEmployee() {
   const [state, setState] = useState("");
   const [code, setCode] = useState("");
   const [department, setDepartment] = useState("");
+  const [displayModal, setDisplayModal] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -65,8 +57,10 @@ function CreateEmployee() {
   const checkForm = () => {
     if (first === "" || last === "") {
       dispatch(unvalidForm());
+      setDisplayModal(false);
     } else {
       dispatch(validForm());
+      setDisplayModal(true);
     }
   };
 
@@ -84,6 +78,15 @@ function CreateEmployee() {
 
   return (
     <>
+      {console.log(displayModal)}
+      <Modale
+        title="Titre"
+        text="Le texte"
+        cross="X"
+        button="close"
+        showModal={displayModal}
+        hideModal={() => setDisplayModal(false)}
+      />
       <form className="formEmployee">
         <section className="informations">
           <section className="employee">
