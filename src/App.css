@@ -274,3 +274,22 @@ input, select {
 .PaginationIndex__button--active {
     border: 2px solid var(--primary-color)!important;
 }
+
+/* Modale */
+
+.modal {
+    background-color: var(--primary-color);
+}
+
+.modal * {
+    color: white;
+}
+
+.modal__button {
+    color: var(--second-color);
+}
+
+.modal__text {
+    margin: 20px auto;
+}
+

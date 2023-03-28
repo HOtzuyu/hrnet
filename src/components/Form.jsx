@@ -80,8 +80,8 @@ function CreateEmployee() {
     <>
       {console.log(displayModal)}
       <Modale
-        title="Titre"
-        text="Le texte"
+        title="Congrat"
+        text="Employee Created !"
         cross="X"
         button="close"
         showModal={displayModal}
