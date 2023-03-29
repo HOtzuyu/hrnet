@@ -1,4 +1,3 @@
-
 const mockedUser = [
     {
         firstName: "jean",

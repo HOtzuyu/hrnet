@@ -12,6 +12,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import { departments } from "../data/departements";
+
+// personal modal
 import { Modale } from "modal_lib-ho/dist/Modal";
 
 //***************Gestion des datePicker*****************
@@ -20,7 +22,6 @@ function formatDate(date) {
   const dateNew = new Date(date);
   const dateISO = dateNew.toISOString().split("T")[0];
   const [year, month, day] = dateISO.split(".");
-
   return [month, day, year].join("");
 }
 
@@ -39,7 +40,6 @@ function CreateEmployee() {
   const [code, setCode] = useState("");
   const [department, setDepartment] = useState("");
   const [displayModal, setDisplayModal] = useState(false);
-
   const dispatch = useDispatch();
 
   item = {
@@ -223,8 +223,7 @@ function CreateEmployee() {
         className="button-save"
         onClick={saveEmployee}
       >
-        {" "}
-        Save{" "}
+        Save
       </button>
     </>
   );
