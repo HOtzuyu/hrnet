@@ -3,6 +3,10 @@ import { useSelector } from "react-redux";
 import { selectEmployees } from "../utils/redux/selector";
 import mockedUser from "../data/mockup";
 
+/**
+ * @description Displaying a tab of all employee and/or the news employees.
+ * @returns DataTable of all employee.
+ */
 function Current() {
   const employees = useSelector(selectEmployees).dataEmployee;
   const dataEmployees = mockedUser;

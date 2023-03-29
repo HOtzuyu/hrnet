@@ -1,5 +1,9 @@
 import Form from "../components/Form";
 
+/**
+ * @description Displays the form for create a new employee.
+ * @returns {JSX} Form create a new employee.
+ */
 function Home() {
   return (
     <div className="form-home">

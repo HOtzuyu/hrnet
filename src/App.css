@@ -276,6 +276,7 @@ input, select {
 }
 
 /* Modale */
+/* Custom personal modal */
 
 .modal {
     background-color: var(--primary-color);

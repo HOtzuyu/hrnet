@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 
+/**
+ * @description Constant header.
+ * @returns navigation in the 2 pages
+ */
 function Header() {
   return (
     <div className="main-nav">

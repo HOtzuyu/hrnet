@@ -11,6 +11,11 @@ import store from './utils/redux/store';
 
 import './App.css';
 
+/**
+ * Main component of the application that manages the routing of the different pages
+ *
+ * @returns {JSX.Element} The router component
+ */
 function App() {
   return (
     <React.StrictMode>

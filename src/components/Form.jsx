@@ -29,6 +29,10 @@ function formatDate(date) {
 
 let item = [];
 
+/**
+ * @description a form for create e new employee.
+ * @returns a component form for create a new employee.
+ */
 function CreateEmployee() {
   const [first, setFirst] = useState("");
   const [last, setLast] = useState("");
@@ -78,7 +82,7 @@ function CreateEmployee() {
 
   return (
     <>
-      {console.log(displayModal)}
+      {/* Personal modal */}
       <Modale
         title="Congrat"
         text="Employee Created !"
