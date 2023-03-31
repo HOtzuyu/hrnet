@@ -44,6 +44,8 @@ function CreateEmployee() {
   const [code, setCode] = useState("");
   const [department, setDepartment] = useState("");
   const [displayModal, setDisplayModal] = useState(false);
+  const [checkModal, setCheckModal] = useState(true);
+
   const dispatch = useDispatch();
 
   item = {
@@ -61,10 +63,12 @@ function CreateEmployee() {
   const checkForm = () => {
     if (first === "" || last === "") {
       dispatch(unvalidForm());
-      setDisplayModal(false);
+      setDisplayModal(true);
+      setCheckModal(false);
     } else {
       dispatch(validForm());
       setDisplayModal(true);
+      setCheckModal(true);
     }
   };
 
@@ -87,15 +91,29 @@ function CreateEmployee() {
 
   return (
     <>
-      {/* Personal modal */}
-      <Modale
-        title="Congrat"
-        text="Employee Created !"
-        cross="X"
-        button="close"
-        showModal={displayModal}
-        hideModal={() => setDisplayModal(false)}
-      />
+      {
+        /* Personal modal */
+        checkModal ? (
+          <Modale
+            title="Congrat"
+            text="Employee Created !"
+            cross="X"
+            button="close"
+            showModal={displayModal}
+            hideModal={() => setDisplayModal(false)}
+          />
+        ) : (
+          <Modale
+            title="Error"
+            text="Please feel the first or last name"
+            cross="X"
+            button="close"
+            showModal={displayModal}
+            hideModal={() => setDisplayModal(false)}
+          />
+        )
+      }
+
       <form className="formEmployee">
         <section className="informations">
           <section className="employee">
@@ -122,6 +140,7 @@ function CreateEmployee() {
               onChange={setBirth}
               value={birth}
               id="date-of-birth"
+              placeholderText="Select the employee's birth-date"
             />
 
             <label htmlFor="start-date">Start Date</label>
@@ -131,6 +150,7 @@ function CreateEmployee() {
               onChange={setStart}
               value={start}
               id="start-date"
+              placeholderText="Select the employee's start-date"
             />
           </section>
 

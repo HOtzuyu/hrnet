@@ -141,6 +141,10 @@ input, select {
     letter-spacing: 2px;
 }
 
+.red {
+    border: red;
+}
+
 /* Tab */
 
 .current-title{
