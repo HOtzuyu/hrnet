@@ -12,7 +12,7 @@ function Current() {
   const dataEmployees = mockedUser;
 
   /**
-   * select if you want see the list test or the new employee list
+   * select if you want see the list test or the new employee list in data
    */
   return (
     <>

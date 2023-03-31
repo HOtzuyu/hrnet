@@ -28,6 +28,8 @@ $ npm start
 
 ### Check-list
 
+---
+
 - [✔️] Convert the project HRnet in React.
 - [✔️] Convert **one** of the 4 plugin Jquery.
 - [✔️] Replace the remaining 3 jQuery plugins with React components that you will code yourself, or that you can import from existing libraries.
@@ -35,9 +37,22 @@ $ npm start
 
 ### issues
 
+---
+
 - [issue modale](https://github.com/OpenClassrooms-Student-Center/P12_Front-end/issues/3)
   - [Plugins Jquery](https://github.com/kylefox/jquery-modal)
 
+## Personal modal
+
+---
+
+Can access to the npm component plugin modal with the link :
+[npm modal_lib-ho](https://www.npmjs.com/package/modal_lib-ho)
+
+For use the npm component follow the instruction in npm package.
+
 ## Author
+
+---
 
 _Jonhathan HO TZU YU_

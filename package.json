@@ -6,7 +6,7 @@
     "@lephenix47/react-datatable": "^1.0.32",
     "@reduxjs/toolkit": "^1.9.3",
     "jsdoc": "^4.0.2",
-    "modal_lib-ho": "^0.1.4",
+    "modal_lib-ho": "^0.1.6",
     "react": "^18.2.0",
     "react-datepicker": "^4.10.0",
     "react-dom": "^18.2.0",
