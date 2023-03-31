@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Form.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Form.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import {
+  submitForm,
+  unvalidForm,
+  validForm,
+  checkValidForm,
+} from "../utils/redux/action";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
+import { departments } from "../data/departements";
+
+// personal modal
+import { Modale } from "modal_lib-ho/dist/Modal";
+
+//***************Gestion des datePicker*****************
+
+function formatDate(date) {
+  const dateNew = new Date(date);
+  const dateISO = dateNew.toISOString().split("T")[0];
+  const [year, month, day] = dateISO.split(".");
+  return [month, day, year].join("");
+}
+
+//********************************************************
+
+let item = [];
+
+/**
+ * @description a form for create e new employee.
+ * @returns a component form for create a new employee.
+ */
+function CreateEmployee() {
+  const [first, setFirst] = useState("");
+  const [last, setLast] = useState("");
+  const [birth, setBirth] = useState(new Date());
+  const [start, setStart] = useState(new Date());
+  const [street, setStreet] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [code, setCode] = useState("");
+  const [department, setDepartment] = useState("");
+  const [displayModal, setDisplayModal] = useState(false);
+  const dispatch = useDispatch();
+
+  item = {
+    first: first.toLocaleLowerCase(),
+    last: last.toLocaleLowerCase(),
+    birth: formatDate(birth),
+    start: formatDate(start),
+    street: street.toLocaleLowerCase(),
+    city: city.toLocaleLowerCase(),
+    state: state.toLocaleUpperCase(),
+    code: code,
+    department: department.label,
+  };
+
+  const checkForm = () => {
+    if (first === "" || last === "") {
+      dispatch(unvalidForm());
+      setDisplayModal(false);
+    } else {
+      dispatch(validForm());
+      setDisplayModal(true);
+    }
+  };
+
+  const saveEmployee = async (e) => {
+    e.preventDefault();
+    checkForm();
+    const submit = dispatch(checkValidForm());
+
+    if (submit) {
+      dispatch(submitForm(item));
+    } else {
+      return false;
+    }
+  };
+
+  return (
+    &lt;>
+      {/* Personal modal */}
+      &lt;Modale
+        title="Congrat"
+        text="Employee Created !"
+        cross="X"
+        button="close"
+        showModal={displayModal}
+        hideModal={() => setDisplayModal(false)}
+      />
+      &lt;form className="formEmployee">
+        &lt;section className="informations">
+          &lt;section className="employee">
+            &lt;label htmlFor="first-name">First Name&lt;/label>
+            &lt;input
+              type="text"
+              id="first"
+              name="first"
+              onChange={(e) => setFirst(e.target.value)}
+            />
+
+            &lt;label htmlFor="last-name">Last Name&lt;/label>
+            &lt;input
+              type="text"
+              id="last"
+              name="last"
+              onChange={(e) => setLast(e.target.value)}
+            />
+
+            &lt;label htmlFor="date-of-birth">Date of Birth&lt;/label>
+            &lt;DatePicker
+              name="birth"
+              selected={birth}
+              onChange={setBirth}
+              value={birth}
+            />
+
+            &lt;label htmlFor="start-date">Start Date&lt;/label>
+            &lt;DatePicker
+              name="start"
+              selected={start}
+              onChange={setStart}
+              value={start}
+            />
+          &lt;/section>
+
+          &lt;section className="adresse">
+            &lt;label htmlFor="street">Street&lt;/label>
+            &lt;input
+              id="street"
+              type="text"
+              name="street"
+              onChange={(e) => setStreet(e.target.value)}
+            />
+
+            &lt;label htmlFor="city">City&lt;/label>
+            &lt;input
+              id="city"
+              type="text"
+              name="city"
+              onChange={(e) => setCity(e.target.value)}
+            />
+
+            &lt;label>State&lt;/label>
+            &lt;select
+              name="state"
+              onChange={(e) => setState(e.target.value)}
+              id="state"
+            >
+              &lt;option value="AL">Alabama&lt;/option>
+              &lt;option value="AK">Alaska&lt;/option>
+              &lt;option value="AZ">Arizona&lt;/option>
+              &lt;option value="AR">Arkansas&lt;/option>
+              &lt;option value="CA">California&lt;/option>
+              &lt;option value="CO">Colorado&lt;/option>
+              &lt;option value="CT">Connecticut&lt;/option>
+              &lt;option value="DE">Delaware&lt;/option>
+              &lt;option value="DC">District Of Columbia&lt;/option>
+              &lt;option value="FL">Florida&lt;/option>
+              &lt;option value="GA">Georgia&lt;/option>
+              &lt;option value="HI">Hawaii&lt;/option>
+              &lt;option value="ID">Idaho&lt;/option>
+              &lt;option value="IL">Illinois&lt;/option>
+              &lt;option value="IN">Indiana&lt;/option>
+              &lt;option value="IA">Iowa&lt;/option>
+              &lt;option value="KS">Kansas&lt;/option>
+              &lt;option value="KY">Kentucky&lt;/option>
+              &lt;option value="LA">Louisiana&lt;/option>
+              &lt;option value="ME">Maine&lt;/option>
+              &lt;option value="MD">Maryland&lt;/option>
+              &lt;option value="MA">Massachusetts&lt;/option>
+              &lt;option value="MI">Michigan&lt;/option>
+              &lt;option value="MN">Minnesota&lt;/option>
+              &lt;option value="MS">Mississippi&lt;/option>
+              &lt;option value="MO">Missouri&lt;/option>
+              &lt;option value="MT">Montana&lt;/option>
+              &lt;option value="NE">Nebraska&lt;/option>
+              &lt;option value="NV">Nevada&lt;/option>
+              &lt;option value="NH">New Hampshire&lt;/option>
+              &lt;option value="NJ">New Jersey&lt;/option>
+              &lt;option value="NM">New Mexico&lt;/option>
+              &lt;option value="NY">New York&lt;/option>
+              &lt;option value="NC">North Carolina&lt;/option>
+              &lt;option value="ND">North Dakota&lt;/option>
+              &lt;option value="OH">Ohio&lt;/option>
+              &lt;option value="OK">Oklahoma&lt;/option>
+              &lt;option value="OR">Oregon&lt;/option>
+              &lt;option value="PA">Pennsylvania&lt;/option>
+              &lt;option value="RI">Rhode Island&lt;/option>
+              &lt;option value="SC">South Carolina&lt;/option>
+              &lt;option value="SD">South Dakota&lt;/option>
+              &lt;option value="TN">Tennessee&lt;/option>
+              &lt;option value="TX">Texas&lt;/option>
+              &lt;option value="UT">Utah&lt;/option>
+              &lt;option value="VT">Vermont&lt;/option>
+              &lt;option value="VA">Virginia&lt;/option>
+              &lt;option value="WA">Washington&lt;/option>
+              &lt;option value="WV">West Virginia&lt;/option>
+              &lt;option value="WI">Wisconsin&lt;/option>
+              &lt;option value="WY">Wyoming&lt;/option>
+            &lt;/select>
+
+            &lt;label htmlFor="zip-code">Zip Code&lt;/label>
+            &lt;input
+              id="zip-code"
+              type="text"
+              name="code"
+              onChange={(e) => setCode(e.target.value)}
+            />
+          &lt;/section>
+        &lt;/section>
+
+        &lt;section className="department">
+          &lt;Dropdown
+            placeholder="Departments"
+            name="departments"
+            options={departments}
+            onChange={setDepartment}
+          />
+        &lt;/section>
+      &lt;/form>
+
+      &lt;button
+        className="button-save"
+        onClick={saveEmployee}
+      >
+        Save
+      &lt;/button>
+    &lt;/>
+  );
+}
+
+export default CreateEmployee;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#CreateEmployee">CreateEmployee</a></li><li><a href="global.html#Current">Current</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#root">root</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Mar 31 2023 11:17:07 GMT+0200 (heure d’été d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
