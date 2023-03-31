@@ -31,7 +31,8 @@
 }
 
 .logo-nav-img{
-    width: 120px;
+    width: 8vw;
+    height: auto;
     filter: invert(1);
 }
 
@@ -58,7 +59,8 @@
 }
 
 .logo-footer{
-    width: 100px;
+    width: 5vw;
+    height: auto;
 }
 
 /* Form */
@@ -131,7 +133,7 @@ input, select {
     font-size: 1rem;
     font-weight: 700;
     text-transform: uppercase;
-    color: white;
+    color: var(--primary-color);
     cursor: pointer;
     transition: 0.3s;
 }

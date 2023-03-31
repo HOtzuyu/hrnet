@@ -11,10 +11,11 @@ function Current() {
   const employees = useSelector(selectEmployees).dataEmployee;
   const dataEmployees = mockedUser;
 
+  /**
+   * select if you want see the list test or the new employee list
+   */
   return (
     <>
-      {console.log(employees)}
-      {console.log(dataEmployees)}
       <h1 className="current-title">List of Employees</h1>
       <DataTable
         data={dataEmployees}

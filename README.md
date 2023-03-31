@@ -12,33 +12,21 @@
 
 ![logo](./src/assets/logo.png)
 
-## Lancement de l'application
+## Installation
 
-- Clone the repo on your computer.
+---
 
-```bash
-clone [the repository](https://github.com/HOtzuyu/hrnet.git)
+For launch the project in local.
+
+>
+
+```
+$ git clone git@github.com:HOtzuyu/hrnet.git
+$ npm install
+$ npm start
 ```
 
-- install the repo
-
-```bash
-# with NPM
-npm install
-# with Yarn
-yarn
-```
-
-- launch the project
-
-```bash
-# with NPM
-npm start
-# with Yarn
-yarn start
-```
-
-### Besoins
+### Check-list
 
 - [✔️] Convert the project HRnet in React.
 - [✔️] Convert **one** of the 4 plugin Jquery.
@@ -48,7 +36,7 @@ yarn start
 ### issues
 
 - [issue modale](https://github.com/OpenClassrooms-Student-Center/P12_Front-end/issues/3)
-  - [Etude du plugins Jquery](https://github.com/kylefox/jquery-modal)
+  - [Plugins Jquery](https://github.com/kylefox/jquery-modal)
 
 ## Author
 

@@ -68,6 +68,11 @@ function CreateEmployee() {
     }
   };
 
+  /**
+   * Add the new employee
+   * @param {*} e
+   * @returns if form is valid return the new employee, else return false
+   */
   const saveEmployee = async (e) => {
     e.preventDefault();
     checkForm();
@@ -94,7 +99,7 @@ function CreateEmployee() {
       <form className="formEmployee">
         <section className="informations">
           <section className="employee">
-            <label htmlFor="first-name">First Name</label>
+            <label htmlFor="first">First Name</label>
             <input
               type="text"
               id="first"
@@ -102,7 +107,7 @@ function CreateEmployee() {
               onChange={(e) => setFirst(e.target.value)}
             />
 
-            <label htmlFor="last-name">Last Name</label>
+            <label htmlFor="last">Last Name</label>
             <input
               type="text"
               id="last"
@@ -112,18 +117,20 @@ function CreateEmployee() {
 
             <label htmlFor="date-of-birth">Date of Birth</label>
             <DatePicker
-              name="birth"
+              name="date-of-birth"
               selected={birth}
               onChange={setBirth}
               value={birth}
+              id="date-of-birth"
             />
 
             <label htmlFor="start-date">Start Date</label>
             <DatePicker
-              name="start"
+              name="start-date"
               selected={start}
               onChange={setStart}
               value={start}
+              id="start-date"
             />
           </section>
 
@@ -144,7 +151,7 @@ function CreateEmployee() {
               onChange={(e) => setCity(e.target.value)}
             />
 
-            <label>State</label>
+            <label htmlFor="state">State</label>
             <select
               name="state"
               onChange={(e) => setState(e.target.value)}
