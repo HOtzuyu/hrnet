@@ -65,6 +65,7 @@ function CreateEmployee() {
     if (!!first || !!last) {
       dispatch(validForm());
       setDisplayModal(true);
+      setCheckModal(true);
     } else {
       dispatch(unvalidForm());
       setDisplayModal(true);
