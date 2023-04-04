@@ -62,14 +62,13 @@ function CreateEmployee() {
   };
 
   const checkForm = () => {
-    if (first === "" || last === "") {
+    if (!!first || !!last) {
+      dispatch(validForm());
+      setDisplayModal(true);
+    } else {
       dispatch(unvalidForm());
       setDisplayModal(true);
       setCheckModal(false);
-    } else {
-      dispatch(validForm());
-      setDisplayModal(true);
-      setCheckModal(true);
     }
   };
 
